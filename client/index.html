@@ -1,13 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello, World</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="assets/cards/honor_clubs.png"
+    />
+    <title>yaniv</title>
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="assets/cards/honor_clubs.png"
+    />
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="bootstrap.js"></script>
+    <script type="module" src="discord.js"></script>
+
+    <main id="main">
+      <h1 class="title">yaniv</h1>
+      <div name="login" id="login" class="form-floating">
+        <div class="container fs-2">
+          <div class="row" id="participants-list"></div>
+        </div>
+        <button id="start-button" disabled class="m-3">let's play -></button>
+      </div>
+    </main>
   </body>
 </html>

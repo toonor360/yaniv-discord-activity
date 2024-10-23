@@ -1,0 +1,279 @@
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.disable {
+  cursor: none;
+  pointer-events: none;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#rival-table {
+  background-color: #838ff5;
+}
+
+.table {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#my-table {
+  background-color: rgba(55, 55, 55, 1);
+  align-items: flex-end;
+}
+
+#control-center {
+  display: flex;
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
+  align-items: center;
+  gap: 15em;
+}
+
+#control-action {
+  align-items: center;
+  display: flex;
+  gap: 15em;
+}
+
+.game-card {
+  height: 50px;
+  margin: 0 0.2em 0 0.2em;
+}
+
+#my-cards {
+  padding-bottom: 3em;
+}
+
+.my-card:hover {
+  transform: translate(0, -15px);
+  cursor: pointer;
+}
+
+#rival-cards {
+  padding-top: 3em;
+}
+
+.info {
+  color: whitesmoke;
+  font-size: 2em;
+  font-family: "Bebas Neue", cursive;
+  margin: 0;
+}
+
+.my-info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.score {
+  display: flex;
+}
+
+.rival-info {
+  position: absolute;
+  top: 0em;
+  left: 1em;
+}
+
+.numeric-score {
+  margin-left: 0.3em;
+}
+
+#yaniv {
+  height: 10em;
+  min-width: 10em;
+  border-radius: 50%;
+  border-width: 0px;
+  transition: background-color 1s ease;
+  background-color: #90f080;
+  position: relative;
+  cursor: pointer;
+}
+
+#yaniv:hover .yaniv-button-text {
+  transition-duration: 0.8s;
+  transform: rotate(346deg);
+}
+
+.yaniv-button-text {
+  color: rgba(255, 255, 255, 1);
+  font-size: 3.8em;
+  position: absolute;
+  top: 42px;
+  left: 10px;
+  font-family: "Bangers", cursive;
+  transform: rotate(-14deg);
+}
+
+#deck {
+  height: 10em;
+}
+
+#deck:hover {
+  filter: hue-rotate(90deg);
+  border-radius: 4px;
+  box-shadow: 0 0 20px 18px rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+#deck:active {
+  filter: hue-rotate(180deg);
+}
+
+#pile {
+  height: 9em;
+  width: 100px;
+  display: flex;
+  position: relative;
+}
+
+.top-pile:hover {
+  border-radius: 4px;
+  box-shadow: 0 0 8px 7px rgba(255, 255, 255, 0.5);
+}
+
+.top-pile-active {
+  cursor: pointer;
+}
+
+.selected-card {
+  transform: translate(0, -50px);
+  border-radius: 8px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #838ff5;
+}
+
+.yaniv-error {
+  transition: background-color 1s ease;
+  background-color: tomato !important;
+}
+
+.selected-cards-error {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .game-card {
+    height: 50px;
+  }
+  #yaniv {
+    height: 8em;
+    min-width: 8em;
+  }
+  .yaniv-button-text {
+    font-size: 3em;
+    top: 35px;
+    left: 8px;
+  }
+}
+
+.yaniv-win {
+  background-color: beige;
+  font-size: 6em;
+  text-align: center;
+  margin: 0;
+  padding: 0.4em 0.3em 0.5em 0.3em;
+  font-family: "Bangers", cursive;
+  -webkit-animation: flip-scale-up-hor 0.9s linear reverse;
+  animation: flip-scale-up-hor 0.9s linear reverse;
+}
+
+#game-over {
+  position: absolute;
+  width: 100%;
+}
+
+.play-again {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  bottom: -1em;
+  background-color: #7ccee8;
+  border-width: 0;
+  padding: 0.3em 1em;
+  font-size: 2em;
+  font-family: "Bebas Neue", cursive;
+}
+
+@-webkit-keyframes flip-scale-up-hor {
+  0% {
+    -webkit-transform: scale(1) rotateX(0);
+    transform: scale(1) rotateX(0);
+  }
+  50% {
+    -webkit-transform: scale(2.5) rotateX(-90deg);
+    transform: scale(2.5) rotateX(-90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateX(-180deg);
+    transform: scale(1) rotateX(-180deg);
+  }
+}
+
+@keyframes flip-scale-up-hor {
+  0% {
+    -webkit-transform: scale(1) rotateX(0);
+    transform: scale(1) rotateX(0);
+  }
+  50% {
+    -webkit-transform: scale(2.5) rotateX(-90deg);
+    transform: scale(2.5) rotateX(-90deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateX(-180deg);
+    transform: scale(1) rotateX(-180deg);
+  }
+}

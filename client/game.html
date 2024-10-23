@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>yaniv</title>
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="assets/cards/honor_clubs.png"
+    />
+  </head>
+
+  <body>
+    <script type="module" src="bootstrap.js"></script>
+    <script type="module" src="discord.js"></script>
+    <script type="module" src="io.js"></script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="yaniv.js"></script>
+    <main id="main">
+      <section id="rival-table" class="table">
+        <div class="rival-info">
+          <p id="rival-name" class="info"></p>
+          <div class="score">
+            <p class="info">total score:</p>
+            <p id="rival-total-score" class="info numeric-score"></p>
+          </div>
+        </div>
+        <section id="rival-cards" class="cards"></section>
+      </section>
+
+      <section id="control-center">
+        <div id="control-action">
+          <button id="yaniv">
+            <span class="yaniv-button-text">yaniv!</span>
+          </button>
+          <div id="pile"></div>
+          <img src="./assets/cards/blue_back.png" id="deck" class="game-card" />
+        </div>
+
+        <div id="game-over">
+          <p id="winner-banner" class="yaniv-win"></p>
+          <button class="play-again" id="play-again">play again</button>
+        </div>
+      </section>
+
+      <section id="my-table" class="table">
+        <div class="my-info">
+          <p id="my-name" class="info"></p>
+          <div class="score">
+            <p class="info">total score:</p>
+            <p id="my-total-score" class="info numeric-score"></p>
+          </div>
+        </div>
+
+        <section id="my-cards" class="cards"></section>
+      </section>
+    </main>
+  </body>
+</html>

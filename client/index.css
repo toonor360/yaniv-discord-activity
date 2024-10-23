@@ -1,0 +1,93 @@
+body {
+  text-align: center;
+  animation: bganimation 60s infinite;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+#login {
+  width: 30%;
+}
+
+.title {
+  font-size: 9em;
+  font-family: "Bangers", cursive;
+}
+
+.form-floating {
+  font-family: "Bebas Neue", cursive;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  border-color: #212529 !important;
+}
+
+#start-button {
+  background-color: transparent;
+  border-radius: 8px;
+  border-color: transparent;
+  font-size: 2em;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+}
+
+#start-button:hover:not(:disabled) {
+  color: tomato;
+}
+
+#start-button:active:not(:disabled) {
+  color: #0d6efd;
+}
+
+#complaints-box {
+  text-decoration: none;
+  font-family: "Heebo", sans-serif;
+  color: #212529;
+}
+
+#complaints-box:hover {
+  color: black;
+}
+
+.avatar {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+@keyframes bganimation {
+  0% {
+    background-color: #7ccee8;
+  }
+  17% {
+    background-color: #848ff5;
+  }
+  34% {
+    background-color: #90f080;
+  }
+  51% {
+    background-color: #f5deb3;
+  }
+  68% {
+    background-color: #ff6347;
+  }
+  85% {
+    background-color: #ff83f3;
+  }
+  100% {
+    background-color: #7ccee8;
+  }
+}

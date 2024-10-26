@@ -13,7 +13,7 @@ export default defineConfig({
         ws: true,
       },
       "/socket": {
-        target: "https://yaniv-discord-activity.onrender.com/socket",
+        target: "https://yaniv-discord-activity.onrender.com/socket.io",
         changeOrigin: true,
         secure: false,
         ws: true,

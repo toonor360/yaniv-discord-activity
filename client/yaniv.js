@@ -16,6 +16,7 @@ export const takeCardFromPile = (socket) => (event) => {
     } else {
       document.querySelectorAll(".selected-card").forEach((card) => {
         card.classList.add("selected-cards-error");
+        // play sound
         setTimeout(() => {
           card.classList.remove("selected-cards-error");
         }, 500);
@@ -36,6 +37,7 @@ export const takeCardFromDeck = (socket) => () => {
     } else {
       document.querySelectorAll(".selected-card").forEach((card) => {
         card.classList.add("selected-cards-error");
+        // play sound
         setTimeout(() => {
           card.classList.remove("selected-cards-error");
         }, 500);
@@ -57,6 +59,9 @@ export const createCard = (name) => {
 export const cardPressed = (event) => {
   event.target.classList.toggle("my-card");
   event.target.classList.toggle("selected-card");
+  // play sound
+  const audio = new Audio("./assets/music/sounds/tap.mp3");
+  audio.play();
 };
 
 export const removeTopPileCards = (socket) => {

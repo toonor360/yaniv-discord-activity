@@ -1,4 +1,5 @@
 import { addPlayerImage } from "./io.js";
+import { isSoundOn } from "./settings.js";
 import { cardsToNumber } from "./utils.js";
 
 export const takeCardFromPile = (socket) => (event) => {
@@ -60,8 +61,10 @@ export const cardPressed = (event) => {
   event.target.classList.toggle("my-card");
   event.target.classList.toggle("selected-card");
   // play sound
-  const audio = new Audio("./assets/music/sounds/tap.mp3");
-  audio.play();
+  if (isSoundOn()) {
+    const audio = new Audio("./assets/music/sounds/tap.mp3");
+    audio.play();
+  }
 };
 
 export const removeTopPileCards = (socket) => {

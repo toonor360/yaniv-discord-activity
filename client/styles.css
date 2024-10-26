@@ -101,6 +101,53 @@ body {
   left: 2em;
 }
 
+.settings {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  display: flex;
+  gap: 1em;
+}
+
+.music-settings {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.music-menu {
+  display: block;
+  background-color: gray;
+  border-radius: 4px;
+  padding: 0.5em;
+}
+
+#music-range {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  height: 5em;
+  vertical-align: bottom;
+}
+
+.setting-button {
+  background-color: transparent;
+  border-width: 0;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.settings img {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
 .score {
   display: flex;
 }

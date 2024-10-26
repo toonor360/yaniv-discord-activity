@@ -1,4 +1,5 @@
 import { io } from "socket.io-client";
+import { isSoundOn } from "./settings.js";
 import {
   cardPressed,
   createCard,
@@ -213,6 +214,11 @@ window.onload = async () => {
     winnerBanner.innerText = `the winner is ${winner.name}`;
     winnerBanner.classList.remove("yaniv-win");
     winnerBanner.classList.add("yaniv-win");
+
+    if (isSoundOn()) {
+      const audio = new Audio("./assets/music/sounds/yaniv.mp3");
+      audio.play();
+    }
   });
 
   socket.on("onAssaf", ({ winner, state }) => {
@@ -222,6 +228,11 @@ window.onload = async () => {
     winnerBanner.innerText = `assaf! the winner is ${winner.name}`;
     winnerBanner.classList.remove("yaniv-win");
     winnerBanner.classList.add("yaniv-win");
+
+    if (isSoundOn()) {
+      const audio = new Audio("./assets/music/sounds/assaf.mp3");
+      audio.play();
+    }
   });
 };
 

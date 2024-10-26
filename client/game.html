@@ -16,13 +16,30 @@
   <body>
     <script type="module" src="bootstrap.js"></script>
     <script type="module" src="io.js"></script>
-    <script type="module" src="utils.js"></script>
-    <script type="module" src="yaniv.js"></script>
-    <audio autoplay loop>
+    <audio id="game-music" autoplay loop>
       <source src="assets/music/room-background-music.mp3" type="audio/mpeg" />
     </audio>
 
     <main id="main">
+      <div class="settings">
+        <div id="sound-settings">
+          <div id="sound-button" class="setting-button">
+            <img
+              src="./assets/icons/sound-on.svg"
+              alt="sound"
+              id="sound-icon"
+            />
+          </div>
+        </div>
+        <div class="music-settings">
+          <div id="music-button" class="setting-button">
+            <img src="./assets/icons/music-on.svg" alt="music" id="music-on" />
+          </div>
+          <div id="music-menu" class="music-menu hidden">
+            <input type="range" class="form-range" id="music-range" />
+          </div>
+        </div>
+      </div>
       <section id="rival-table" class="game-table">
         <div class="rival-info">
           <div id="rival-name" class="info name"></div>

@@ -1,6 +1,7 @@
 body {
   text-align: center;
   animation: bganimation 60s infinite;
+  user-select: none;
 }
 
 #main {
@@ -91,3 +92,48 @@ body {
     background-color: #7ccee8;
   }
 }
+
+/* ---------- splash screen ----------- */
+.splash {
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 95%;
+  width: 95%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0);
+  transition: all ease-in-out 600ms;
+  align-content: center;
+  text-align: center;
+}
+
+.hidden {
+  transition: 0.5s;
+  display: none;
+}
+
+.waviy {
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  font-size: 7em;
+  color: #7ccee8;
+}
+.waviy span {
+  font-family: "Bangers", cursive;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes waviy {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+}
+/* -------------------- */

@@ -1,5 +1,14 @@
 import { discordSdk, getUser } from "./discord.js";
 
+// move to the fetch users
+const splashScreen = document.querySelector(".splash");
+splashScreen.addEventListener("click", () => {
+  splashScreen.style.opacity = 0;
+  setTimeout(() => {
+    splashScreen.classList.add("hidden");
+  }, 610);
+});
+
 const joinRoom = async (event) => {
   console.log(event);
   event.preventDefault();

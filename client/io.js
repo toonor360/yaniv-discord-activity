@@ -5,6 +5,7 @@ import {
   disableActions,
   finishGame,
   removeTopPileCards,
+  restartGame,
   takeCardFromDeck,
   takeCardFromPile,
   yanivPressed,
@@ -28,7 +29,6 @@ window.onload = async () => {
     "my-name"
   );
 
-  document.getElementById("game-over").style.display = "none";
   disableActions(document.getElementById("control-action"), true);
   disableActions(document.getElementById("my-table"), true);
 
@@ -50,15 +50,18 @@ window.onload = async () => {
     .getElementById("yaniv")
     .addEventListener("click", yanivPressed(socket));
 
+  document
+    .getElementById("play-again")
+    .addEventListener("click", restartGame(socket));
+
   socket.on("onClientDisconnect", () => {
     socket.disconnect();
-    console.log(window.history);
-    window.history.back();
+    document.getElementById("game-disconnected").style.display = "block";
   });
 
   socket.on("onRoomFull", (roomName) => {
     socket.disconnect();
-    window.history.back();
+    document.getElementById("game-disconnected").style.display = "block";
   });
 
   socket.on("onGameStart", (cards) => {
@@ -180,16 +183,26 @@ window.onload = async () => {
       disableActions(document.getElementById("control-action"), true);
       disableActions(document.getElementById("my-table"), true);
       document
-        .getElementsByClassName("my-info")[0]
-        .getElementsByClassName("avatar")
+        .getElementById("rival-name")
+        .getElementsByClassName("avatar")[0]
+        .classList.add("active-avatar");
+
+      document
+        .getElementById("my-name")
+        .getElementsByClassName("avatar")[0]
         .classList.remove("active-avatar");
     } else {
       disableActions(document.getElementById("control-action"), false);
       disableActions(document.getElementById("my-table"), false);
       document
-        .getElementsByClassName("my-info")[0]
-        .getElementsByClassName("avatar")
+        .getElementById("my-name")
+        .getElementsByClassName("avatar")[0]
         .classList.add("active-avatar");
+
+      document
+        .getElementById("rival-name")
+        .getElementsByClassName("avatar")[0]
+        .classList.remove("active-avatar");
     }
   });
 

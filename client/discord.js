@@ -1,14 +1,12 @@
 import { DiscordSDK, Events } from "@discord/embedded-app-sdk";
 import { hideSplashScreen, updateParticipantsLobby } from "./index.js";
 
-let discordSdk = JSON.parse(sessionStorage.getItem("discord-sdk"));
+export const discordSdk = new DiscordSDK(
+  import.meta.env.VITE_DISCORD_CLIENT_ID
+);
 
-if (!discordSdk) {
-  discordSdk = new DiscordSDK(import.meta.env.VITE_DISCORD_CLIENT_ID);
-}
-
-let auth;
 setupDiscordSdk();
+let auth;
 
 async function setupDiscordSdk() {
   await discordSdk.ready();
@@ -52,8 +50,6 @@ async function setupDiscordSdk() {
     updateParticipantsLobby
   );
 
-  sessionStorage.setItem("discord-sdk", JSON.stringify(discordSdk));
-
   hideSplashScreen();
 }
 
@@ -64,5 +60,3 @@ export const getUser = () => {
 export const getParticipants = async () => {
   return await discordSdk.commands.getInstanceConnectedParticipants();
 };
-
-export { discordSdk };

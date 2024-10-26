@@ -93,8 +93,8 @@ const isStepValid = (cards) => {
   }
 
   cards = cards.sort(
-    (currentCard, nexrCard) =>
-      cardsToNumber.get(currentCard) - cardsToNumber.get(nexrCard)
+    (currentCard, nextCard) =>
+      cardsToNumber.get(currentCard) - cardsToNumber.get(nextCard)
   );
 
   let isNumbersFollowing = true;

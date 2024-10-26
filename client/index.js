@@ -4,10 +4,11 @@ const joinRoom = async (event) => {
   console.log(event);
   event.preventDefault();
   const user = getUser();
-  window.location = `/game?name=${user?.username}&code=${discordSdk?.instanceId}`;
+
+  window.location = `/game?name=${user?.username}&code=${discordSdk?.instanceId}&playerId=${user?.id}&avatar=${user?.avatar}`;
 };
 
-document.getElementById("start-button").addEventListener("click", joinRoom);
+document.getElementById("start-button")?.addEventListener("click", joinRoom);
 
 export const updateParticipantsLobby = ({ participants }) => {
   if (!participants?.length) {

@@ -21,21 +21,29 @@ export const socket = io(window.location.host, {
   autoConnect: false,
 });
 
-window.onload = () => {
+window.onload = async () => {
   const urlParams = new URLSearchParams(window.location.search);
 
-  document.getElementById("my-name").innerHTML = urlParams.get("name");
+  addPlayerImage(
+    urlParams.get("name"),
+    urlParams.get("avatar"),
+    urlParams.get("playerId"),
+    "my-name"
+  );
+
   document.getElementById("game-over").style.display = "none";
   disableActions(document.getElementById("control-action"), true);
   disableActions(document.getElementById("my-table"), true);
 
   socket.connect();
 
-  console.log("connected");
-  console.log(socket);
-
   socket.emit("onJoinRoom", urlParams.get("code"));
-  socket.emit("onGetPlayerName", urlParams.get("name"));
+  socket.emit(
+    "onGetPlayerName",
+    urlParams.get("name"),
+    urlParams.get("avatar"),
+    urlParams.get("playerId")
+  );
 
   document.getElementById("deck").addEventListener("click", takeCardFromDeck);
 
@@ -75,7 +83,15 @@ window.onload = () => {
 
     playersState.forEach((player) => {
       if (player.id !== socket.id) {
-        document.getElementById("rival-name").innerHTML = player.name;
+        console.log(player);
+
+        addPlayerImage(
+          player.name,
+          player.avatar,
+          player.playerId,
+          "rival-name"
+        );
+
         document.getElementById("rival-total-score").textContent =
           player.totalScore;
 
@@ -182,4 +198,23 @@ window.onload = () => {
     winnerBanner.classList.remove("yaniv-win");
     winnerBanner.classList.add("yaniv-win");
   });
+};
+
+const addPlayerImage = (name, avatar, id, divId) => {
+  document.getElementById(divId).innerText = name;
+  const avatarTag = document.createElement("img");
+
+  let avatarSrc = "";
+  if (avatar !== "null" || avatar !== "undefined" || avatar == undefined) {
+    avatarSrc = `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=256`;
+  } else {
+    const defaultAvatarIndex = (BigInt(id) >> 22n) % 6n;
+    avatarSrc = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png`;
+  }
+
+  avatarTag.src = avatarSrc;
+  avatarTag.alt = name;
+  avatarTag.classList.add("avatar");
+
+  document.getElementById(divId).prepend(avatarTag);
 };

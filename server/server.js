@@ -43,8 +43,13 @@ app.post("/api/token", async (req, res) => {
   res.send({ access_token });
 });
 
-const maxPlayers = 2;
 const roomNameToGameManager = new Map();
+const maxPlayers = 2;
+
+app.post("/api/players/room/:id", (req, res) => {
+  const gameManager = roomNameToGameManager.get(req.params.id);
+  res.send(gameManager.getPlayersState());
+});
 
 io.on("connection", (socket) => {
   console.log("a user connected");
@@ -167,8 +172,13 @@ const onCardTakeFromDeck = (socket, roomName) => {
 };
 
 const onGetPlayersName = (socket, roomName) => {
-  socket.on("onGetPlayerName", (name) => {
+  socket.on("onGetPlayerName", (name, avatar, playerId) => {
     roomNameToGameManager.get(roomName).getPlayer(socket.id).name = name;
+    roomNameToGameManager.get(roomName).getPlayer(socket.id).avatar = avatar;
+    roomNameToGameManager.get(roomName).getPlayer(socket.id).playerId =
+      playerId;
+    console.log(name, avatar, playerId);
+    console.log(roomNameToGameManager.get(roomName).getPlayer(socket.id));
   });
 };
 

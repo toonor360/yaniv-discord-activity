@@ -5,6 +5,8 @@ export const discordSdk = new DiscordSDK(
   import.meta.env.VITE_DISCORD_CLIENT_ID
 );
 
+console.log(import.meta.env.VITE_DISCORD_CLIENT_ID);
+
 let auth;
 setupDiscordSdk();
 
@@ -46,21 +48,17 @@ async function setupDiscordSdk() {
   }
 
   if (window.location.pathname === "/") {
-    const participants =
-      await discordSdk.commands.getInstanceConnectedParticipants();
-    updateParticipantsLobby(participants.participants);
-
     discordSdk.subscribe(
       Events.ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE,
       updateParticipantsLobby
     );
-  } else if (window.location.pathname === "/game") {
-    const participants =
-      await discordSdk.commands.getInstanceConnectedParticipants();
-    updateParticipantsLobby(participants.participants);
   }
 }
 
 export const getUser = () => {
   return auth?.user;
+};
+
+export const getParticipants = async () => {
+  return await discordSdk.commands.getInstanceConnectedParticipants();
 };

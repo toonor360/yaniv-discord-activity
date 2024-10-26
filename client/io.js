@@ -14,9 +14,9 @@ import {
 
 const socket = io(window.location.host, {
   transports: ["websocket"],
-  host: `${window.location.host}/.proxy/socket.io`,
-  hostname: `${window.location.host}/.proxy/socket.io`,
-  path: "/.proxy/socket.io",
+  host: `${window.location.host}/.proxy/socket`,
+  hostname: `${window.location.host}/.proxy/socket`,
+  path: "/.proxy/socket",
   autoConnect: false,
 });
 

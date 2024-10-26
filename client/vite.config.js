@@ -12,8 +12,8 @@ export default defineConfig({
         secure: false,
         ws: true,
       },
-      "/socket.io": {
-        target: "https://yaniv-discord-activity.onrender.com/socket.io",
+      "/socket": {
+        target: "https://yaniv-discord-activity.onrender.com/socket",
         changeOrigin: true,
         secure: false,
         ws: true,

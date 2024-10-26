@@ -21,7 +21,7 @@ export default defineConfig({
         ws: true,
       },
       "/analytics": {
-        target: "https://googletagmanager.com/gtag/js?id=G-R8BVLNNTFV",
+        target: "https://googletagmanager.com",
         changeOrigin: true,
         secure: false,
         ws: true,

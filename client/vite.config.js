@@ -7,13 +7,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3001",
+        target: "https://yaniv-discord-activity.onrender.com",
         changeOrigin: true,
         secure: false,
         ws: true,
       },
       "/socket.io": {
-        target: "http://localhost:3001/socket.io",
+        target: "https://yaniv-discord-activity.onrender.com/socket.io",
         changeOrigin: true,
         secure: false,
         ws: true,

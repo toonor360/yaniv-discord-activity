@@ -8,7 +8,7 @@ import { GameManager } from "./gameManager.js";
 dotenv.config({ path: "../.env" });
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: { origin: "*" },
@@ -19,6 +19,10 @@ app.use(express.json());
 
 httpServer.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
+});
+
+app.get("/health", (req, res) => {
+  res.send("OK");
 });
 
 app.post("/api/token", async (req, res) => {

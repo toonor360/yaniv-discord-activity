@@ -144,6 +144,10 @@ body {
   display: block;
 }
 
+#help-icon {
+  filter: invert(100%);
+}
+
 .hidden {
   display: none !important;
 }

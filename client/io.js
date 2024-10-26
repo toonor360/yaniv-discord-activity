@@ -20,6 +20,15 @@ const socket = io(window.location.host, {
   autoConnect: false,
 });
 
+const assafSound = new Audio("./assets/music/sounds/assaf.mp3");
+assafSound.volume = 0.9;
+const yanivSound = new Audio("./assets/music/sounds/yaniv.mp3");
+yanivSound.volume = 0.9;
+const rivalThrowCardSound = new Audio(
+  "./assets/music/sounds/rival-throw-card.mp3"
+);
+rivalThrowCardSound.volume = 0.4;
+
 window.onload = async () => {
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -193,6 +202,10 @@ window.onload = async () => {
         .getElementsByClassName("avatar")[0]
         .classList.remove("active-avatar");
     } else {
+      if (isSoundOn()) {
+        rivalThrowCardSound.play();
+      }
+
       disableActions(document.getElementById("control-action"), false);
       disableActions(document.getElementById("my-table"), false);
       document
@@ -216,8 +229,7 @@ window.onload = async () => {
     winnerBanner.classList.add("yaniv-win");
 
     if (isSoundOn()) {
-      const audio = new Audio("./assets/music/sounds/yaniv.mp3");
-      audio.play();
+      yanivSound.play();
     }
   });
 
@@ -230,8 +242,7 @@ window.onload = async () => {
     winnerBanner.classList.add("yaniv-win");
 
     if (isSoundOn()) {
-      const audio = new Audio("./assets/music/sounds/assaf.mp3");
-      audio.play();
+      assafSound.play();
     }
   });
 };

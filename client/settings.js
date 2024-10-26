@@ -10,8 +10,8 @@ document.getElementById("music-button").addEventListener("click", (e) => {
   document.getElementById("music-menu").classList.add("hidden");
 });
 
-document.getElementById("music-range").value = 70;
-document.getElementById("game-music").volume = 0.35;
+document.getElementById("music-range").value = 50;
+document.getElementById("game-music").volume = 0.25;
 
 document.getElementById("music-range").addEventListener("input", (event) => {
   const audio = document.getElementById("game-music");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,12 +22,26 @@
 
     <main id="main">
       <div class="settings">
+        <div
+          id="help-button"
+          class="setting-button"
+          data-bs-toggle="modal"
+          data-bs-target="#help-menu"
+        >
+          <img src="./assets/icons/help.svg" alt="help" id="help-icon" />
+        </div>
         <div id="sound-settings">
           <div id="sound-button" class="setting-button">
             <img
               src="./assets/icons/sound-on.svg"
               alt="sound"
               id="sound-icon"
+            />
+            <img
+              src="./assets/icons/sound-off.svg"
+              alt="sound"
+              id="sound-off"
+              style="display: none"
             />
           </div>
         </div>
@@ -81,6 +95,63 @@
 
         <section id="my-cards" class="cards"></section>
       </section>
+
+      <div id="help-menu" class="modal fade" aria-hidden="true" tabindex="-1">
+        <div
+          class="modal-dialog modal-dialog-scrollable"
+          style="max-width: 50%"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                Welcome to Yaniv! Here's how to dive in and play
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h4>Objective</h4>
+              <p>
+                The goal of Yaniv is to have the lowest hand value when you
+                decide to declare "Yaniv!" But here's the twist—if an opponent
+                has a hand equal to or lower than yours, they can call "Asaf,"
+                which penalizes you! Aim low, but beware of the Asaf.
+              </p>
+              <h4>Basic Gameplay</h4>
+              <p>
+                Draw and Discard: Start your turn by picking up a card from the
+                deck or discard pile. Discard a Card or Set: Drop a single card,
+                a pair, or a set of consecutive cards. This helps lower your
+                hand value. Check Your Hand: If your hand’s total is 7 points or
+                fewer, you can declare “Yaniv!” to end the round
+              </p>
+              <h4>The "Asaf" Rule</h4>
+              <p>
+                When a player declares "Yaniv," any other player with an equal
+                or lower hand can call "Asaf" to challenge. If "Asaf" is called,
+                the player who declared "Yaniv" is penalized: they score the
+                total value of their hand plus 30 points, while the "Asaf"
+                caller scores zero for that round. Asaf adds a risk—think
+                carefully before calling Yaniv!
+              </p>
+              <h4>Scoring</h4>
+              <p>
+                If you declare "Yaniv" and have the lowest hand, you score zero.
+                If someone calls "Asaf" on you and has an equal or lower hand,
+                you take the penalty. Winning the Game
+              </p>
+              <br />
+              <h6>
+                Keep an eye on opponents' discards to guess their hand value.
+              </h6>
+              <h5>Good luck, and happy Yaniving!🃏</h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>

@@ -1,9 +1,10 @@
 import { discordSdk, getUser } from "./discord.js";
 
+const readySound = new Audio("./assets/music/sounds/im-ready.wav");
+readySound.volume = 0.1;
+
 const joinRoom = async (event) => {
-  const audio = new Audio("./assets/music/sounds/im-ready.wav");
-  audio.volume = 0.5;
-  audio.play();
+  readySound.play();
 
   event.preventDefault();
   const user = getUser();

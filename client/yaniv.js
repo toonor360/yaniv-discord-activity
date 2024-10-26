@@ -2,16 +2,30 @@ import { addPlayerImage } from "./io.js";
 import { isSoundOn } from "./settings.js";
 import { cardsToNumber } from "./utils.js";
 
+const badMoveSound = new Audio("./assets/music/sounds/bad-move.wav");
+badMoveSound.volume = 0.5;
+const throwCardSound = new Audio("./assets/music/sounds/throw-card.mp3");
+throwCardSound.volume = 0.5;
+const tapSound = new Audio("./assets/music/sounds/tap.mp3");
+tapSound.volume = 0.5;
+const winSound = new Audio("./assets/music/sounds/win.wav");
+winSound.volume = 0.4;
+const yanivErrorSound = new Audio("./assets/music/sounds/yaniv-error.wav");
+yanivErrorSound.volume = 0.5;
+const readySound = new Audio("./assets/music/sounds/im-ready.wav");
+readySound.volume = 0.1;
+
 export const takeCardFromPile = (socket) => (event) => {
-  const audio = new Audio("./assets/music/sounds/throw-card.mp3");
-  audio.volume = 0.5;
-  audio.play();
   if (document.querySelector(".selected-card")) {
     const thrownCards = Array.from(
       document.querySelectorAll(".selected-card")
     ).map((card) => card.id);
 
     if (isStepValid(thrownCards)) {
+      if (isSoundOn()) {
+        throwCardSound.play();
+      }
+
       socket.emit("onCardTakenFromPile", {
         thrownCards,
         cardFromPile: event.target.id,
@@ -19,9 +33,11 @@ export const takeCardFromPile = (socket) => (event) => {
     } else {
       document.querySelectorAll(".selected-card").forEach((card) => {
         card.classList.add("selected-cards-error");
-        const audio = new Audio("./assets/music/sounds/bad-move.wav");
-        audio.volume = 0.5;
-        audio.play();
+
+        if (isSoundOn()) {
+          badMoveSound.play();
+        }
+
         setTimeout(() => {
           card.classList.remove("selected-cards-error");
         }, 500);
@@ -31,22 +47,25 @@ export const takeCardFromPile = (socket) => (event) => {
 };
 
 export const takeCardFromDeck = (socket) => () => {
-  const audio = new Audio("./assets/music/sounds/throw-card.mp3");
-  audio.volume = 0.5;
-  audio.play();
   if (document.querySelector(".selected-card")) {
     const thrownCards = Array.from(
       document.querySelectorAll(".selected-card")
     ).map((card) => card.id);
 
     if (isStepValid(thrownCards)) {
+      if (isSoundOn()) {
+        throwCardSound.play();
+      }
+
       socket.emit("onCardTakeFromDeck", thrownCards);
     } else {
       document.querySelectorAll(".selected-card").forEach((card) => {
         card.classList.add("selected-cards-error");
-        const audio = new Audio("./assets/music/sounds/bad-move.wav");
-        audio.volume = 0.5;
-        audio.play();
+
+        if (isSoundOn()) {
+          badMoveSound.play();
+        }
+
         setTimeout(() => {
           card.classList.remove("selected-cards-error");
         }, 500);
@@ -69,9 +88,7 @@ export const cardPressed = (event) => {
   event.target.classList.toggle("my-card");
   event.target.classList.toggle("selected-card");
   if (isSoundOn()) {
-    const audio = new Audio("./assets/music/sounds/tap.mp3");
-    audio.volume = 0.5;
-  audio.play();
+    tapSound.play();
   }
 };
 
@@ -93,14 +110,16 @@ export const yanivPressed = (socket) => () => {
   const yaniv = document.getElementById("yaniv");
 
   if (calcHandSum() <= 7) {
-    const audio = new Audio("./assets/music/sounds/win.wav");
-    audio.volume = 0.5;
-    audio.play();
+    if (isSoundOn()) {
+      winSound.play();
+    }
+
     socket.emit("onYaniv", socket.id);
   } else {
-    const audio = new Audio("./assets/music/sounds/yaniv-error.wav");
-    audio.volume = 0.5;
-    audio.play();
+    if (isSoundOn()) {
+      yanivErrorSound.play();
+    }
+
     yaniv.classList.add("yaniv-error");
 
     setTimeout(() => {
@@ -174,6 +193,10 @@ export const finishGame = (playersState, socket) => {
 };
 
 export const restartGame = (socket) => () => {
+  if (isSoundOn()) {
+    readySound.play();
+  }
+
   socket.emit("onRestartGame");
 };
 

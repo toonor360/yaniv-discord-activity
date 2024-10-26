@@ -4,6 +4,8 @@ body {
   margin: 0px;
   position: relative;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .disable {
@@ -17,18 +19,18 @@ body {
   height: 100%;
 }
 
-#rival-table {
-  background-color: #838ff5;
-}
-
-.table {
+.game-table {
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
+#rival-table {
+  background-image: linear-gradient(tomato, black, black, black);
+}
+
 #my-table {
-  background-color: rgba(55, 55, 55, 1);
+  background-image: linear-gradient(black, black, black, #838ff5);
   align-items: flex-end;
 }
 

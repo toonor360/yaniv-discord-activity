@@ -27,6 +27,11 @@
 
       gtag("config", "G-R8BVLNNTFV", {
         cookie_flags: "samesite=none;secure",
+        transport_url:
+          window.location.protocol +
+          "//" +
+          window.location.host +
+          "/.proxy/collect",
       });
     </script>
   </head>

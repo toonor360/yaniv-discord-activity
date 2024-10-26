@@ -26,6 +26,12 @@ export default defineConfig({
         secure: false,
         ws: true,
       },
+      "/collect": {
+        target: "https://www.google-analytics.com",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
     },
     hmr: {
       clientPort: 443,

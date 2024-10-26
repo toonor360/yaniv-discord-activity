@@ -50,13 +50,16 @@ window.onload = async () => {
     .getElementById("yaniv")
     .addEventListener("click", yanivPressed(socket));
 
-  socket.on("onClientDisconnect", () =>
-    alert("Sorry, the game is over.\nthe other player has left the game.")
-  );
+  socket.on("onClientDisconnect", () => {
+    socket.disconnect();
+    console.log(window.history);
+    window.history.back();
+  });
 
-  socket.on("onRoomFull", (roomName) =>
-    alert(`Room ${roomName} is full, client - disconnected`)
-  );
+  socket.on("onRoomFull", (roomName) => {
+    socket.disconnect();
+    window.history.back();
+  });
 
   socket.on("onGameStart", (cards) => {
     const myCards = document.getElementById("my-cards");

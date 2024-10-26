@@ -176,9 +176,17 @@ window.onload = async () => {
     if (socket.id !== currentPlayerTurn) {
       disableActions(document.getElementById("control-action"), true);
       disableActions(document.getElementById("my-table"), true);
+      document
+        .getElementsByClassName("my-info")[0]
+        .getElementsByClassName("avatar")
+        .classList.remove("active-avatar");
     } else {
       disableActions(document.getElementById("control-action"), false);
       disableActions(document.getElementById("my-table"), false);
+      document
+        .getElementsByClassName("my-info")[0]
+        .getElementsByClassName("avatar")
+        .classList.add("active-avatar");
     }
   });
 

@@ -26,11 +26,11 @@ body {
 }
 
 #rival-table {
-  background-image: linear-gradient(tomato, black, black, black);
+  background: linear-gradient(180deg, tomato -150%, #000000 100%);
 }
 
 #my-table {
-  background-image: linear-gradient(black, black, black, #838ff5);
+  background: linear-gradient(180deg, #000000 0%, #848FF5 200%);
   align-items: flex-end;
 }
 
@@ -83,6 +83,10 @@ body {
   margin-top: -5px;
 }
 
+.active-avatar {
+  border: 3px white solid;
+}
+
 .name {
   display: flex;
   justify-content: start;
@@ -94,7 +98,7 @@ body {
   flex-direction: column;
   position: absolute;
   bottom: 1em;
-  left: 1em;
+  left: 2em;
 }
 
 .score {
@@ -103,8 +107,8 @@ body {
 
 .rival-info {
   position: absolute;
-  top: 0.5em;
-  left: 1em;
+  top: 1.5em;
+  left: 2em;
 }
 
 .numeric-score {

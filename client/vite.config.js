@@ -26,8 +26,10 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     rollupOptions: {
-      index: "index.html",
-      game: "game.html",
+      input: {
+        index: "index.html",
+        game: "game.html",
+      },
     },
   },
   plugins: [ViteMinifyPlugin()],

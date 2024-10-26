@@ -11,7 +11,6 @@ const app = express();
 const port = process.env.PORT || 3001;
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  path: "/socket.io",
   cors: { origin: "*" },
 });
 

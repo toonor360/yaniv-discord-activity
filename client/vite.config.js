@@ -20,6 +20,12 @@ export default defineConfig({
         secure: false,
         ws: true,
       },
+      "/analytics": {
+        target: "https://www.googletagmanager.com/gtag/js?id=G-R8BVLNNTFV",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
     },
     hmr: {
       clientPort: 443,

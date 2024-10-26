@@ -58,6 +58,7 @@ io.on("connection", (socket) => {
 
 const onDisconnect = (socket, roomName) => {
   socket.on("disconnect", (reason) => {
+    console.log("Client disconnected - ", socket.id);
     const gameManager = roomNameToGameManager.get(roomName);
     socket.broadcast.emit("onClientDisconnect", socket.id);
     io.disconnectSockets();

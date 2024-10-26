@@ -95,7 +95,6 @@ body {
 
 /* ---------- splash screen ----------- */
 .splash {
-  cursor: pointer;
   position: fixed;
   top: 50%;
   left: 50%;

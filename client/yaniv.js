@@ -156,11 +156,9 @@ export const finishGame = (playersState, socket) => {
   disableActions(document.getElementById("my-table"), true);
 };
 
-const restartGame = (socket) => () => {
+export const restartGame = (socket) => () => {
   socket.emit("onRestartGame");
 };
-
-document.getElementById("play-again").addEventListener("click", restartGame);
 
 export const disableActions = (element, isAble) => {
   if (isAble) {

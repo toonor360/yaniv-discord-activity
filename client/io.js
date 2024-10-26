@@ -5,6 +5,7 @@ import {
   disableActions,
   finishGame,
   removeTopPileCards,
+  restartGame,
   takeCardFromDeck,
   takeCardFromPile,
   yanivPressed,
@@ -48,6 +49,10 @@ window.onload = async () => {
   document
     .getElementById("yaniv")
     .addEventListener("click", yanivPressed(socket));
+
+  document
+    .getElementById("play-again")
+    .addEventListener("click", restartGame(socket));
 
   socket.on("onClientDisconnect", () => {
     socket.disconnect();
@@ -180,6 +185,11 @@ window.onload = async () => {
       document
         .getElementById("rival-name")
         .getElementsByClassName("avatar")[0]
+        .classList.add("active-avatar");
+
+      document
+        .getElementById("my-name")
+        .getElementsByClassName("avatar")[0]
         .classList.remove("active-avatar");
     } else {
       disableActions(document.getElementById("control-action"), false);
@@ -188,6 +198,11 @@ window.onload = async () => {
         .getElementById("my-name")
         .getElementsByClassName("avatar")[0]
         .classList.add("active-avatar");
+
+      document
+        .getElementById("rival-name")
+        .getElementsByClassName("avatar")[0]
+        .classList.remove("active-avatar");
     }
   });
 

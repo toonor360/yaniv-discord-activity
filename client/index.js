@@ -1,4 +1,3 @@
-import { RPCCloseCodes } from "@discord/embedded-app-sdk";
 import { discordSdk, getUser } from "./discord.js";
 
 const joinRoom = async (event) => {
@@ -6,7 +5,6 @@ const joinRoom = async (event) => {
   event.preventDefault();
   const user = getUser();
 
-  discordSdk.close(RPCCloseCodes.CLOSE_NORMAL, "Game started");
   window.location = `/game?name=${user?.username}&code=${discordSdk?.instanceId}&playerId=${user?.id}&avatar=${user?.avatar}`;
 };
 

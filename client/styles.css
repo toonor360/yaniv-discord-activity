@@ -30,7 +30,7 @@ body {
 }
 
 #my-table {
-  background: linear-gradient(180deg, #000000 0%, #848FF5 200%);
+  background: linear-gradient(180deg, #000000 0%, #848ff5 200%);
   align-items: flex-end;
 }
 
@@ -254,6 +254,13 @@ body {
 #game-over {
   position: absolute;
   width: 100%;
+  display: none;
+}
+
+#game-disconnected {
+  position: absolute;
+  width: 100%;
+  display: none;
 }
 
 .play-again {

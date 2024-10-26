@@ -1,14 +1,5 @@
 import { discordSdk, getUser } from "./discord.js";
 
-// move to the fetch users
-const splashScreen = document.querySelector(".splash");
-splashScreen.addEventListener("click", () => {
-  splashScreen.style.opacity = 0;
-  setTimeout(() => {
-    splashScreen.classList.add("hidden");
-  }, 610);
-});
-
 const joinRoom = async (event) => {
   console.log(event);
   event.preventDefault();
@@ -18,6 +9,15 @@ const joinRoom = async (event) => {
 };
 
 document.getElementById("start-button")?.addEventListener("click", joinRoom);
+
+export const hideSplashScreen = () => {
+  const splashScreen = document.querySelector(".splash");
+
+  splashScreen.style.opacity = 0;
+  setTimeout(() => {
+    splashScreen.classList.add("hidden");
+  }, 610);
+};
 
 export const updateParticipantsLobby = ({ participants }) => {
   if (!participants?.length) {

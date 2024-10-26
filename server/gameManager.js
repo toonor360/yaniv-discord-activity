@@ -75,6 +75,8 @@ export class GameManager {
     return this.players.map((player) => ({
       id: player.id,
       name: player.name,
+      playerId: player.playerId,
+      avatar: player.avatar,
       cardsAmount: player.hand.length,
       totalScore: player.totalScore,
     }));

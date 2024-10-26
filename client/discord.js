@@ -1,5 +1,5 @@
 import { DiscordSDK, Events } from "@discord/embedded-app-sdk";
-import { updateParticipantsLobby } from "./index.js";
+import { hideSplashScreen, updateParticipantsLobby } from "./index.js";
 
 export const discordSdk = new DiscordSDK(
   import.meta.env.VITE_DISCORD_CLIENT_ID
@@ -47,12 +47,12 @@ async function setupDiscordSdk() {
     throw new Error("Authenticate command failed");
   }
 
-  if (window.location.pathname === "/") {
-    discordSdk.subscribe(
-      Events.ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE,
-      updateParticipantsLobby
-    );
-  }
+  discordSdk.subscribe(
+    Events.ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE,
+    updateParticipantsLobby
+  );
+
+  hideSplashScreen();
 }
 
 export const getUser = () => {

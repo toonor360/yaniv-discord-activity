@@ -51,7 +51,7 @@ body {
 }
 
 .game-card {
-  height: 50px;
+  height: 8em;
   margin: 0 0.2em 0 0.2em;
 }
 
@@ -103,7 +103,7 @@ body {
 
 .rival-info {
   position: absolute;
-  top: 0em;
+  top: 0.5em;
   left: 1em;
 }
 
@@ -223,7 +223,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .game-card {
-    height: 50px;
+    height: 8em;
   }
   #yaniv {
     height: 8em;

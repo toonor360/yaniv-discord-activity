@@ -7,13 +7,10 @@ import {
   removeTopPileCards,
   takeCardFromDeck,
   takeCardFromPile,
+  yanivPressed,
 } from "./yaniv.js";
 
-// const socket = io("https://yaniv-server-yuval.herokuapp.com/", {
-//   autoConnect: false,
-// });
-
-export const socket = io(window.location.host, {
+const socket = io(window.location.host, {
   transports: ["websocket"],
   host: `${window.location.host}/.proxy/socket.io`,
   hostname: `${window.location.host}/.proxy/socket.io`,
@@ -45,7 +42,13 @@ window.onload = async () => {
     urlParams.get("playerId")
   );
 
-  document.getElementById("deck").addEventListener("click", takeCardFromDeck);
+  document
+    .getElementById("deck")
+    .addEventListener("click", takeCardFromDeck(socket));
+
+  document
+    .getElementById("yaniv")
+    .addEventListener("click", yanivPressed(socket));
 
   socket.on("onClientDisconnect", () =>
     alert("Sorry, the game is over.\nthe other player has left the game.")
@@ -83,8 +86,6 @@ window.onload = async () => {
 
     playersState.forEach((player) => {
       if (player.id !== socket.id) {
-        console.log(player);
-
         addPlayerImage(
           player.name,
           player.avatar,
@@ -139,7 +140,7 @@ window.onload = async () => {
       cardToRemove[0].remove();
     }
 
-    removeTopPileCards();
+    removeTopPileCards(socket);
 
     cardsId.forEach((cardId, index) => {
       const newCard = createCard(cardId);
@@ -147,7 +148,7 @@ window.onload = async () => {
       if (index === 0 || index === cardsId.length - 1) {
         newCard.classList.add("top-pile");
         newCard.classList.add("pile-card");
-        newCard.addEventListener("click", takeCardFromPile);
+        newCard.addEventListener("click", takeCardFromPile(socket));
       }
 
       newCard.style.transform = `rotate(${randomRotation}deg)`;
@@ -171,8 +172,8 @@ window.onload = async () => {
     });
   });
 
-  socket.on("onTurnChanged", (currentPlayerTrun) => {
-    if (socket.id !== currentPlayerTrun) {
+  socket.on("onTurnChanged", (currentPlayerTurn) => {
+    if (socket.id !== currentPlayerTurn) {
       disableActions(document.getElementById("control-action"), true);
       disableActions(document.getElementById("my-table"), true);
     } else {
@@ -182,7 +183,7 @@ window.onload = async () => {
   });
 
   socket.on("onPlayerWin", ({ winner, state }) => {
-    finishGame(state);
+    finishGame(state, socket);
     document.getElementById("game-over").style.display = "block";
     const winnerBanner = document.getElementById("winner-banner");
     winnerBanner.innerText = `the winner is ${winner.name}`;
@@ -191,7 +192,7 @@ window.onload = async () => {
   });
 
   socket.on("onAssaf", ({ winner, state }) => {
-    finishGame(state);
+    finishGame(state, socket);
     document.getElementById("game-over").style.display = "block";
     const winnerBanner = document.getElementById("winner-banner");
     winnerBanner.innerText = `assaf! the winner is ${winner.name}`;
@@ -200,7 +201,7 @@ window.onload = async () => {
   });
 };
 
-const addPlayerImage = (name, avatar, id, divId) => {
+export const addPlayerImage = (name, avatar, id, divId) => {
   document.getElementById(divId).innerText = name;
   const avatarTag = document.createElement("img");
 

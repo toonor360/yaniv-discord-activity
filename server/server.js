@@ -177,8 +177,6 @@ const onGetPlayersName = (socket, roomName) => {
     roomNameToGameManager.get(roomName).getPlayer(socket.id).avatar = avatar;
     roomNameToGameManager.get(roomName).getPlayer(socket.id).playerId =
       playerId;
-    console.log(name, avatar, playerId);
-    console.log(roomNameToGameManager.get(roomName).getPlayer(socket.id));
   });
 };
 

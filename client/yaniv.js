@@ -2,7 +2,9 @@ import { addPlayerImage } from "./io.js";
 import { cardsToNumber } from "./utils.js";
 
 export const takeCardFromPile = (socket) => (event) => {
-  console.log("takeCardFromPile", socket);
+  const audio = new Audio("./assets/music/sounds/throw-card.mp3");
+  audio.volume = 0.5;
+  audio.play();
   if (document.querySelector(".selected-card")) {
     const thrownCards = Array.from(
       document.querySelectorAll(".selected-card")
@@ -16,7 +18,9 @@ export const takeCardFromPile = (socket) => (event) => {
     } else {
       document.querySelectorAll(".selected-card").forEach((card) => {
         card.classList.add("selected-cards-error");
-        // play sound
+        const audio = new Audio("./assets/music/sounds/bad-move.wav");
+        audio.volume = 0.5;
+        audio.play();
         setTimeout(() => {
           card.classList.remove("selected-cards-error");
         }, 500);
@@ -26,7 +30,9 @@ export const takeCardFromPile = (socket) => (event) => {
 };
 
 export const takeCardFromDeck = (socket) => () => {
-  console.log("takeCardFromDeck", socket);
+  const audio = new Audio("./assets/music/sounds/throw-card.mp3");
+  audio.volume = 0.5;
+  audio.play();
   if (document.querySelector(".selected-card")) {
     const thrownCards = Array.from(
       document.querySelectorAll(".selected-card")
@@ -37,7 +43,9 @@ export const takeCardFromDeck = (socket) => () => {
     } else {
       document.querySelectorAll(".selected-card").forEach((card) => {
         card.classList.add("selected-cards-error");
-        // play sound
+        const audio = new Audio("./assets/music/sounds/bad-move.wav");
+        audio.volume = 0.5;
+        audio.play();
         setTimeout(() => {
           card.classList.remove("selected-cards-error");
         }, 500);
@@ -59,8 +67,8 @@ export const createCard = (name) => {
 export const cardPressed = (event) => {
   event.target.classList.toggle("my-card");
   event.target.classList.toggle("selected-card");
-  // play sound
   const audio = new Audio("./assets/music/sounds/tap.mp3");
+  audio.volume = 0.5;
   audio.play();
 };
 
@@ -75,11 +83,6 @@ export const removeTopPileCards = (socket) => {
 
 const calcHandSum = () => {
   const myHand = Array.from(document.getElementsByClassName("my-card"));
-  console.log(myHand);
-  console.log(
-    "sum",
-    myHand.reduce((total, { id }) => total + cardsToNumber.get(id), 0)
-  );
   return myHand.reduce((total, { id }) => total + cardsToNumber.get(id), 0);
 };
 
@@ -87,8 +90,14 @@ export const yanivPressed = (socket) => () => {
   const yaniv = document.getElementById("yaniv");
 
   if (calcHandSum() <= 7) {
+    const audio = new Audio("./assets/music/sounds/win.wav");
+    audio.volume = 0.5;
+    audio.play();
     socket.emit("onYaniv", socket.id);
   } else {
+    const audio = new Audio("./assets/music/sounds/yaniv-error.wav");
+    audio.volume = 0.5;
+    audio.play();
     yaniv.classList.add("yaniv-error");
 
     setTimeout(() => {

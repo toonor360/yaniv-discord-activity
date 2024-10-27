@@ -10,6 +10,7 @@ export class GameManager {
     this.players = [];
     this.currentPlayerTurn = "";
     this.roomName = roomName;
+    this.lastWinner = "";
   }
 
   addPlayer(socket) {
@@ -95,13 +96,14 @@ export class GameManager {
     this.deck = new Map(cardsToNumber);
     this.pile = [];
     this.topPile = [];
-    this.currentPlayerTurn = "";
+    this.currentPlayerTurn = this.lastWinner;
     this.players.forEach((player) => {
       player.hand = [];
     });
   }
 
   yanivAddScore(winnerId) {
+    this.lastWinner = winnerId;
     this.players.forEach((player) => {
       if (player.id !== winnerId) {
         const totalScore = this.calcHandSum(player.id) + player.totalScore;

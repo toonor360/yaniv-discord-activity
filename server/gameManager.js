@@ -96,7 +96,10 @@ export class GameManager {
     this.deck = new Map(cardsToNumber);
     this.pile = [];
     this.topPile = [];
-    this.currentPlayerTurn = this.lastWinner;
+    this.currentPlayerTurn = this.players.find(
+      (player) => player.id !== this.lastWinner
+    ).id;
+    
     this.players.forEach((player) => {
       player.hand = [];
     });
@@ -117,6 +120,8 @@ export class GameManager {
       let totalScore = this.calcHandSum(player.id) + player.totalScore;
       if (player.id === assafFineId) {
         totalScore += 30;
+      } else {
+        this.lastWinner = player.id;
       }
 
       player.totalScore = totalScore;

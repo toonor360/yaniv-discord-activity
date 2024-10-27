@@ -24,7 +24,9 @@ export const hideSplashScreen = () => {
 };
 
 export const updateParticipantsLobby = ({ participants }) => {
-  if (!participants?.length) {
+  if (!participants?.length || participants.length > 2) {
+    document.getElementById("start-button").disabled = true;
+    document.getElementById("alert").style.display = "alert";
     return;
   }
 
